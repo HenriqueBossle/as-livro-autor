@@ -50,7 +50,6 @@ public class AutorService {
         autorRepository.deleteById(id);
     }
 
-    // Método auxiliar para converter Autor para AutorResponseDTO
     private AutorResponseDTO mapToDTO(Autor autor) {
         return new AutorResponseDTO(
                 autor.getId(),

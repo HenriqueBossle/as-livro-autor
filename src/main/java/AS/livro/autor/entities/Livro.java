@@ -12,7 +12,7 @@ public class Livro {
     private String descricao;
 
     @ManyToOne
-    @JoinColumn(name = "autor_id") // define a coluna no banco
+    @JoinColumn(name = "autor_id")
     private Autor autor;
 
     public Livro() {}

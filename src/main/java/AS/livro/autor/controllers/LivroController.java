@@ -38,7 +38,7 @@ public class LivroController {
 
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
-                .buildAndExpand(createdLivro.getId())  // Passa o id aqui
+                .buildAndExpand(createdLivro.getId())
                 .toUri();
 
         return ResponseEntity.created(uri).body(createdLivro);
