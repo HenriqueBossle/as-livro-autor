@@ -5,14 +5,16 @@ public class LivroResponseDTO {
     private String titulo;
     private String descricao;
     private String autorNome;
+    private Long autorId;
 
     public LivroResponseDTO() {}
 
-    public LivroResponseDTO(Long id, String titulo, String descricao, String autorNome) {
+    public LivroResponseDTO(Long id, String titulo, String descricao, String autorNome, Long autorId) {
         this.id = id;
         this.titulo = titulo;
         this.descricao = descricao;
         this.autorNome = autorNome;
+        this.autorId = autorId;
     }
 
     public Long getId() {
@@ -46,5 +48,12 @@ public class LivroResponseDTO {
     public void setAutorNome(String autorNome) {
         this.autorNome = autorNome;
     }
-}
 
+    public Long getAutorId() {
+        return autorId;
+    }
+
+    public void setAutorId(Long autorId) {
+        this.autorId = autorId;
+    }
+}

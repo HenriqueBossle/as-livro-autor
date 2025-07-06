@@ -26,13 +26,14 @@ public class AutorController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Autor> getAutor(@PathVariable Long id) {
-        return ResponseEntity.ok(this.autorService.getAutor(id));
+    public ResponseEntity<AutorResponseDTO> getAutor(@PathVariable Long id) {
+        AutorResponseDTO autorDTO = autorService.getAutorDTO(id);
+        return ResponseEntity.ok(autorDTO);
     }
 
     @PostMapping
-    public ResponseEntity<Autor> createAutor(@RequestBody Autor autor) {
-        Autor savedAutor = this.autorService.createAutor(autor);
+    public ResponseEntity<AutorResponseDTO> createAutor(@RequestBody Autor autor) {
+        AutorResponseDTO savedAutor = autorService.createAutor(autor);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(savedAutor.getId()).toUri();
 
@@ -40,14 +41,14 @@ public class AutorController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Autor> updateAutor(@PathVariable Long id, @RequestBody Autor autorAtualizado) {
-        Autor autor = autorService.updateAutor(id, autorAtualizado);
-        return ResponseEntity.ok(autor);
+    public ResponseEntity<AutorResponseDTO> updateAutor(@PathVariable Long id, @RequestBody Autor autorAtualizado) {
+        AutorResponseDTO autorDTO = autorService.updateAutor(id, autorAtualizado);
+        return ResponseEntity.ok(autorDTO);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteAutor(@PathVariable Long id) {
-        this.autorService.deleteAutor(id);
+        autorService.deleteAutor(id);
         return ResponseEntity.noContent().build();
     }
 }

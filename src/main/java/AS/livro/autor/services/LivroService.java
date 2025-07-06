@@ -29,7 +29,8 @@ public class LivroService {
                 livro.getId(),
                 livro.getTitulo(),
                 livro.getDescricao(),
-                livro.getAutor().getNome()
+                livro.getAutor().getNome(),
+                livro.getAutor().getId()
         )).collect(Collectors.toList());
     }
 
@@ -40,7 +41,8 @@ public class LivroService {
                 livro.getId(),
                 livro.getTitulo(),
                 livro.getDescricao(),
-                livro.getAutor().getNome()
+                livro.getAutor().getNome(),
+                livro.getAutor().getId()
         );
     }
 
@@ -59,7 +61,8 @@ public class LivroService {
                 savedLivro.getId(),
                 savedLivro.getTitulo(),
                 savedLivro.getDescricao(),
-                savedLivro.getAutor().getNome()
+                savedLivro.getAutor().getNome(),
+                savedLivro.getAutor().getId()
         );
     }
 
@@ -79,7 +82,8 @@ public class LivroService {
                 updatedLivro.getId(),
                 updatedLivro.getTitulo(),
                 updatedLivro.getDescricao(),
-                updatedLivro.getAutor().getNome()
+                updatedLivro.getAutor().getNome(),
+                updatedLivro.getAutor().getId()
         );
     }
 

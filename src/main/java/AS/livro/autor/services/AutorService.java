@@ -20,7 +20,39 @@ public class AutorService {
     public List<AutorResponseDTO> getAutores() {
         List<Autor> autores = autorRepository.findAll();
 
-        return autores.stream().map(autor -> new AutorResponseDTO(
+        return autores.stream()
+                .map(this::mapToDTO)
+                .collect(Collectors.toList());
+    }
+
+    public AutorResponseDTO getAutorDTO(Long id) {
+        Autor autor = autorRepository.findById(id).orElseThrow();
+        return mapToDTO(autor);
+    }
+
+    public AutorResponseDTO createAutor(Autor autor) {
+        Autor saved = autorRepository.save(autor);
+        return mapToDTO(saved);
+    }
+
+    public AutorResponseDTO updateAutor(Long id, Autor autorAtualizado) {
+        Autor autor = autorRepository.findById(id).orElseThrow();
+
+        autor.setNome(autorAtualizado.getNome());
+        autor.setEmail(autorAtualizado.getEmail());
+        autor.setBiografia(autorAtualizado.getBiografia());
+
+        Autor updated = autorRepository.save(autor);
+        return mapToDTO(updated);
+    }
+
+    public void deleteAutor(Long id) {
+        autorRepository.deleteById(id);
+    }
+
+    // Método auxiliar para converter Autor para AutorResponseDTO
+    private AutorResponseDTO mapToDTO(Autor autor) {
+        return new AutorResponseDTO(
                 autor.getId(),
                 autor.getNome(),
                 autor.getEmail(),
@@ -32,31 +64,6 @@ public class AutorService {
                                 livro.getDescricao()
                         ))
                         .collect(Collectors.toList())
-        )).collect(Collectors.toList());
-    }
-
-    // Mantém os outros métodos, mas adaptando os retornos para entidades quando necessário.
-    // ...
-
-    public Autor getAutor(Long id) {
-        return autorRepository.findById(id).orElseThrow();
-    }
-
-    public Autor createAutor(Autor autor) {
-        return autorRepository.save(autor);
-    }
-
-    public Autor updateAutor(Long id, Autor autorAtualizado) {
-        Autor autor = autorRepository.findById(id).orElseThrow();
-
-        autor.setNome(autorAtualizado.getNome());
-        autor.setEmail(autorAtualizado.getEmail());
-        autor.setBiografia(autorAtualizado.getBiografia());
-
-        return autorRepository.save(autor);
-    }
-
-    public void deleteAutor(Long id) {
-        autorRepository.deleteById(id);
+        );
     }
 }
